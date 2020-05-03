@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+
 public class seleniumTest {
 
     private WebDriver webDriver;
@@ -31,40 +34,50 @@ public class seleniumTest {
     @Test(priority = 1)
     public void siteOpen(){
         webDriver.get("https://www.selenium.dev/");
-        System.out.println("Site is opened at " + webDriver.getTitle());
+        String title = webDriver.getTitle();
+        System.out.println("Site is opened at " + title);
+        assertThat(title).isEqualTo("SeleniumHQ Browser Automation");
+
     }
 
     @Test(priority = 2)
     public void navigateToDownloads(){
         webDriver.navigate().to("https://www.selenium.dev/downloads/");
-        System.out.println("You are navigated to " + webDriver.getTitle());
+        String title = webDriver.getTitle();
+        System.out.println("You are navigated to " + title);
+        assertThat(title).isEqualTo("Downloads");
     }
 
     @Test(priority = 3)
     public void navigateToProjects(){
         webDriver.navigate().to("https://www.selenium.dev/projects/");
-        System.out.println(webDriver.getTitle());
         WebElement element = webDriver.findElement(By.className("product-logo-container"));
-        System.out.println(element);
+        String title = webDriver.getTitle();
+        System.out.println(title);
+        assertThat(title).isEqualTo("Selenium Projects");
     }
 
     @Test(priority = 4)
     public void navigateToDocumentation(){
         webDriver.navigate().to("https://www.selenium.dev/documentation/en/");
-        System.out.println(webDriver.getTitle().toUpperCase());
-        System.out.println("Current URL = " + webDriver.getCurrentUrl());
+        String title = webDriver.getTitle().toUpperCase();
+        System.out.println(title);
+        assertThat(title).isEqualTo("THE SELENIUM BROWSER AUTOMATION PROJECT :: DOCUMENTATION FOR SELENIUM");
     }
 
     @Test(priority = 5)
     public void navigateToSupport(){
         webDriver.navigate().forward();
-        System.out.println(webDriver.getTitle());
+        String title = webDriver.getTitle();
+        assertThat(title).isEqualTo("");
     }
 
     @Test(priority = 6)
     public void navigateToBlog(){
         webDriver.navigate().forward();
-        System.out.println(webDriver.getTitle());
+        String title = webDriver.getTitle();
+        assertThat(title).isEqualTo("");
+
     }
 
 
