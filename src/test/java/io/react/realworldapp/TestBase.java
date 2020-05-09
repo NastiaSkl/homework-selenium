@@ -31,7 +31,8 @@ public class TestBase {
     }
 
     @AfterMethod
-    public void quit(){
+    public void quit() throws InterruptedException {
+        Thread.sleep(3000);
         driver.quit();
     }
 

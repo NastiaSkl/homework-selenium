@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -41,7 +43,7 @@ public class Article extends TestBase {
 
 
         @Test  (dependsOnMethods = {"addNewArticle"}, priority = 1)
-        public void editArticle(){
+        public void editArticle() throws InterruptedException {
 
             clickLoginButton();
             checkPage("Sign In");
@@ -107,7 +109,7 @@ public class Article extends TestBase {
     }
 
     protected void clickPublishArticle(){
-        WebElement publishArticleButton = driver.findElement(By.className("btn-primary"));
+        WebElement publishArticleButton = driver.findElement(By.cssSelector("#main > div > div > div > div > div > form > fieldset > button"));
         publishArticleButton.click();
     }
 
